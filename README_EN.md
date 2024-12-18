@@ -63,6 +63,8 @@ python examples/gradio_demo.py
 ```
 
 ## Install
+无需安装paddlepaddle、paddleocr等深度学习库，仅需安装onnxruntime，即可用imgocr调用。
+
 ```shell
 pip install -U imgocr
 ```
