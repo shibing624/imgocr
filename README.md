@@ -26,11 +26,11 @@
 ## Showcase
 
 
-| 银行存根                                                                                                    | 表格                                                                                                       |
-|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| <img src="https://github.com/shibing624/imgocr/blob/main/exampls/ocr_results/00111002.jpg" width="300"> | <img src="https://github.com/shibing624/imgocr/blob/main/exampls/ocr_results/00015504.jpg" width="300">  |
-| 火车票                                                                                                     | 英文论文                                                                                                     |
-| <img src="https://github.com/shibing624/imgocr/blob/main/exampls/ocr_results/0005622.jpg" width="300">  | <img src="https://github.com/shibing624/imgocr/blob/main/exampls/ocr_results/eng_paper.png" width="300"> |
+| 银行存根                                                                                                     | 表格                                                                                                        |
+|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg" width="300"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg" width="300">  |
+| 火车票                                                                                                      | 英文论文                                                                                                      |
+| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/0005622.jpg" width="300">  | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png" width="300"> |
 
 ## Benchmark
 
@@ -38,7 +38,7 @@ PP-OCRv4串联系统由文本检测模型和文本识别模型串联完成，首
 
 整个流程如下图所示：
 
-<img src="https://github.com/shibing624/imgocr/blob/main/docs/ppocrv4_framework.png" width="600" alt="ppocr-v4">
+<img src="https://github.com/shibing624/imgocr/blob/main/docs/ppocrv4_framework.png" width="800" alt="ppocr-v4">
 
 OCR 检测/识别 benchmark：
 
