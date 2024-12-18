@@ -50,6 +50,7 @@ setup(
         "shapely",
         "numpy",
         "pillow",
+        "pyclipper",
     ],
     extras_require=extras_require,
     packages=find_packages(exclude=['tests']),

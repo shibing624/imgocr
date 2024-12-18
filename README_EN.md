@@ -23,16 +23,33 @@
 **imgocr**：基于PaddleOCR-v4-onnx模型（~14MB）推理，性能更高，可实现 CPU 上毫秒级的 OCR 精准预测，在通用场景上达到开源SOTA。
 
 
+## Showcase
+
+
+| 银行存根                                                                                                     | 表格                                                                                                        |
+|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg" width="500"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg" width="600">  |
+| 火车票                                                                                                      | 英文论文                                                                                                      |
+| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg" width="500"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png" width="600"> |
+
 ## Benchmark
-OCR 检测/识别：
 
-| 模型                    | 检测 Hmean(%) | 识别 Avg Accuracy(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(M) | 字典数 |
-|-------------------------|--------------|----------------------|-----------------|------------------|-----------|--------|
-| PP-OCRv4-mobile(高效率)   | 77.79        | 78.20                | 2.719474        | 79.1097           | 14        | 6625   |
+PP-OCRv4串联系统由文本检测模型和文本识别模型串联完成，首先输入预测图片，经过文本检测模型获取全部的检测框。根据检测框坐标在原图中抠出文本行，并进行矫正，最后将全部文本行送入文本识别模型，得到文本结果。
 
-> OCR 评估集是 PaddleOCR 自建的中文数据集，覆盖街景、网图、文档、手写多个场景，其中文本识别包含1.1w张图片，检测包含500张图片。
+整个流程如下图所示：
+
+<img src="https://github.com/shibing624/imgocr/blob/main/docs/ppocrv4_framework.png" width="800" alt="ppocr-v4">
+
+OCR 检测/识别 benchmark：
+
+| 模型               | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(M)  | 
+|------------------|-----------|-----------|-----------------|------------------|------------|
+| PP-OCRv4-mobile  | 77.79     | 78.20     | 2.719474        | 79.1097           | 14         | 
+
 
 > GPU 推理耗时基于 NVIDIA Tesla T4 机器，精度类型为 FP32，CPU 推理速度基于 Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz，精度类型为 FP32。
+
+> OCR 评估集是 PaddleOCR 自建的中文数据集，覆盖街景、网图、文档、手写多个场景，其中文本识别包含1.1w张图片，检测包含500张图片。
 
 ## Demo
 

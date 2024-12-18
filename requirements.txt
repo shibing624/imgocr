@@ -3,6 +3,7 @@ tqdm
 shapely
 numpy
 pillow
+pyclipper
 onnxruntime # onnxruntime-gpu
 # opencv-contrib-python
 opencv-python-headless~=4.10.0.84
