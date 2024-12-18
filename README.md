@@ -28,9 +28,9 @@
 
 | 银行存根                                                                                                     | 表格                                                                                                        |
 |----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg" width="300"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg" width="300">  |
+| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg" width="400"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg" width="600">  |
 | 火车票                                                                                                      | 英文论文                                                                                                      |
-| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/0005622.jpg" width="300">  | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png" width="300"> |
+| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg" width="400"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png" width="600"> |
 
 ## Benchmark
 
