@@ -2,7 +2,7 @@
 
 <div align="center">
   <a href="https://github.com/shibing624/imgocr">
-    <img src="https://github.com/shibing624/imgocr/blob/main/docs/t2v-logo.png" height="150" alt="Logo">
+    <img src="https://github.com/shibing624/imgocr/blob/main/docs/imgocr-logo.png" height="150" alt="Logo">
   </a>
 </div>
 
@@ -20,7 +20,7 @@
 
 **imgocr**：Python3 package for Chinese/English OCR, with paddleocr-v4 onnx model(~14MB).
 
-基于PaddleOCR-v4-onnx模型（~14MB）推理，性能更高，可实现 CPU 上毫秒级的 OCR 精准预测，在通用场景上达到开源SOTA。
+**imgocr**：基于PaddleOCR-v4-onnx模型（~14MB）推理，性能更高，可实现 CPU 上毫秒级的 OCR 精准预测，在通用场景上达到开源SOTA。
 
 
 ## Benchmark
@@ -30,7 +30,8 @@ OCR 检测/识别：
 |-------------------------|--------------|----------------------|-----------------|------------------|-----------|--------|
 | PP-OCRv4-mobile(高效率)   | 77.79        | 78.20                | 2.719474        | 79.1097           | 14        | 6625   |
 
-> 注：OCR 评估集是 PaddleOCR 自建的中文数据集，覆盖街景、网图、文档、手写多个场景，其中文本识别包含1.1w张图片，检测包含500张图片。GPU 推理耗时基于 NVIDIA Tesla T4 机器，精度类型为 FP32，CPU 推理速度基于 Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz，线程数为 8，精度类型为 FP32。
+> OCR 评估集是 PaddleOCR 自建的中文数据集，覆盖街景、网图、文档、手写多个场景，其中文本识别包含1.1w张图片，检测包含500张图片。
+> GPU 推理耗时基于 NVIDIA Tesla T4 机器，精度类型为 FP32，CPU 推理速度基于 Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz，线程数为 8，精度类型为 FP32。
 
 ## Demo
 
@@ -71,7 +72,7 @@ print("result:", result)
 ```
 
 output:
-![](examples/ocr_results/11.jpg)
+![](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/11.jpg)
 
 ### 命令行模式（CLI）
 
@@ -81,37 +82,20 @@ code: [cli.py](https://github.com/shibing624/imgocr/blob/main/imgocr/cli.py)
 
 ```
 > imgocr -h                                    
-usage: imgocr [-h] --input_file INPUT_FILE [--output_file OUTPUT_FILE] [--model_type MODEL_TYPE] [--model_name MODEL_NAME] [--encoder_type ENCODER_TYPE]
-                [--batch_size BATCH_SIZE] [--max_seq_length MAX_SEQ_LENGTH] [--chunk_size CHUNK_SIZE] [--device DEVICE]
-                [--show_progress_bar SHOW_PROGRESS_BAR] [--normalize_embeddings NORMALIZE_EMBEDDINGS]
+usage: cli.py [-h] --image_dir IMAGE_DIR [--output_dir OUTPUT_DIR]
+              [--chunk_size CHUNK_SIZE] [--use_gpu USE_GPU]
 
 imgocr cli
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  --input_file INPUT_FILE
-                        input file path, text file, required
-  --output_file OUTPUT_FILE
-                        output file path, output csv file, default text_embs.csv
-  --model_type MODEL_TYPE
-                        model type: sentencemodel, word2vec, default sentencemodel
-  --model_name MODEL_NAME
-                        model name or path, default shibing624/imgocr-base-chinese
-  --encoder_type ENCODER_TYPE
-                        encoder type: MEAN, CLS, POOLER, FIRST_LAST_AVG, LAST_AVG, default MEAN
-  --batch_size BATCH_SIZE
-                        batch size, default 32
-  --max_seq_length MAX_SEQ_LENGTH
-                        max sequence length, default 256
+  --image_dir IMAGE_DIR
+                        input image dir path, required
+  --output_dir OUTPUT_DIR
+                        output ocr result dir path, default outputs
   --chunk_size CHUNK_SIZE
-                        chunk size to save partial results, default 1000
-  --device DEVICE       device: cpu, cuda, default None
-  --show_progress_bar SHOW_PROGRESS_BAR
-                        show progress bar, default True
-  --normalize_embeddings NORMALIZE_EMBEDDINGS
-                        normalize embeddings, default False
-  --multi_gpu MULTI_GPU
-                        multi gpu, default False
+                        chunk size, default 10
+  --use_gpu USE_GPU     use gpu, default False
 ```
 
 run：
@@ -129,7 +113,7 @@ imgocr --image_dir data
 - 邮件我：xuming: xuming624@qq.com
 - 微信我：加我*微信号：xuming624, 备注：姓名-公司-NLP* 进NLP交流群。
 
-<img src="docs/wechat.jpeg" width="200" />
+<img src="https://github.com/shibing624/imgocr/blob/main/docs/wechat.jpeg" width="200" />
 
 
 ## Citation
