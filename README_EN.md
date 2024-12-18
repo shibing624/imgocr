@@ -55,7 +55,7 @@ OCR 检测/识别 benchmark：
 
 HuggingFace Demo: https://huggingface.co/spaces/shibing624/imgocr
 
-![](https://github.com/shibing624/imgocr/blob/main/docs/hf.png)
+![](https://github.com/shibing624/imgocr/blob/main/docs/imgocr_hf.png)
 
 run example: [examples/gradio_demo.py](https://github.com/shibing624/imgocr/blob/main/examples/gradio_demo.py) to see the demo:
 ```shell
