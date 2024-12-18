@@ -13,9 +13,9 @@ if sys.version_info < (3,):
 with open('README.md', 'r', encoding='utf-8') as f:
     readme = f.read()
 
-extras_require= {
-    "ort-cpu": ["onnxruntime"],
-    "ort-gpu": ["onnxruntime-gpu"],
+extras_require = {
+    "onnxruntime": ["onnxruntime"],
+    "onnxruntime-gpu": ["onnxruntime-gpu"],
     "serve": ["uvicorn[standard]", "fastapi", "python-multipart", "pydantic"],
     "dev": ["albumentations", "pip-tools", "pytest", "datasets[vision]"],
 }
@@ -51,6 +51,7 @@ setup(
         "numpy",
         "pillow",
         "pyclipper",
+        "opencv-python-headless",
     ],
     extras_require=extras_require,
     packages=find_packages(exclude=['tests']),
