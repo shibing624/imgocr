@@ -43,6 +43,7 @@ OCR detection/recognition benchmark:
 | Model | Detection mAP(%) | Recognition Acc(%) | GPU inference time(ms) | CPU inference time(ms) | Model storage size(M) |
 |------------------|-----------|-----------|----------------|------------------|------------|
 | PP-OCRv4-mobile | 77.79 | 78.20 | 2.719474 | 79.1097 | 14 |
+| PP-OCRv4-server	   | 82.69	    | 84.04	    | 24.92	       | 2742.31	     | 207       | 
 
 > GPU inference time is based on NVIDIA Tesla T4 machine, precision type is FP32, CPU inference speed is based on Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, precision type is FP32.
 
