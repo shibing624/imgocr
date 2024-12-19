@@ -8,6 +8,7 @@ import argparse
 from PIL import Image
 import numpy as np
 import cv2
+import os
 
 try:
     from cv2.typing import MatLike
@@ -15,8 +16,24 @@ except ImportError:
     from numpy import ndarray as MatLike
 from loguru import logger
 from .predict_system import TextSystem
-from .utils import infer_args
-from .utils import draw_ocr
+from .utils import infer_args, draw_ocr, http_get
+
+pwd_path = os.path.abspath(os.path.dirname(__file__))
+
+__all__ = ['ImgOcr', 'drwa_ocr_boxes', 'load_image']
+
+MODEL_URLS = {
+    "server": {
+        "det": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_det_server_infer.onnx",
+        "rec": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_rec_server_infer.onnx",
+        "cls": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_cls_infer.onnx"
+    },
+    "mobile": {
+        "det": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_det_mobile_infer.onnx",
+        "rec": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_rec_mobile_infer.onnx",
+        "cls": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_cls_infer.onnx"
+    },
+}
 
 
 class ImgOcr(TextSystem):
@@ -28,6 +45,19 @@ class ImgOcr(TextSystem):
         params = argparse.Namespace(**inference_args_dict)
         # 根据传入的参数覆盖更新默认参数
         params.__dict__.update(**kwargs)
+
+        # 选择模型，is_efficiency_mode=True 使用移动端模型，否则使用服务器端（大的）模型
+        if not params.is_efficiency_mode:
+            # 模型路径
+            local_det_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_det_server_infer.onnx')
+            if not os.path.exists(local_det_model_path):
+                http_get(MODEL_URLS["server"]['det'], local_det_model_path)
+            params.det_model_path = local_det_model_path
+            local_rec_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_rec_server_infer.onnx')
+            if not os.path.exists(local_rec_model_path):
+                http_get(MODEL_URLS["server"]['rec'], local_rec_model_path)
+            params.rec_model_path = local_rec_model_path
+
         # 初始化模型
         super().__init__(params)
 
@@ -112,8 +142,7 @@ def load_image(img: Union[str, Image.Image, MatLike]) -> np.ndarray:
     return img
 
 
-def drwa_ocr_boxes(origin_img: Union[str, Image.Image, MatLike], ocr_result: List,
-                   saved_img_path: str = "draw_ocr.jpg"):
+def drwa_ocr_boxes(origin_img: Union[str, Image.Image, MatLike], ocr_result: List, saved_img_path="draw_ocr.jpg"):
     """
     Draw the OCR results on the input image and save the result.
     :param origin_img:

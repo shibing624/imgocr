@@ -32,7 +32,7 @@ setup(
     license="Apache License 2.0",
     zip_safe=False,
     python_requires=">=3.6.0",
-    entry_points={"console_scripts": ["imgocr = imgocr.cli:cli"]},
+    entry_points={"console_scripts": ["imgocr = imgocr.cli:main"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
@@ -51,10 +51,11 @@ setup(
         "numpy",
         "pillow",
         "pyclipper",
+        "requests",
         "opencv-python-headless",
     ],
     extras_require=extras_require,
     packages=find_packages(exclude=['tests']),
     package_dir={'imgocr': 'imgocr'},
-    package_data={'imgocr': ['*.*', 'fonts/*.ttf', 'models/ppocrv4/*.onnx', 'models/*.txt']},
+    package_data={'imgocr': ['*.*', 'fonts/*.ttf', 'models/*.onnx', 'models/*.txt']},
 )

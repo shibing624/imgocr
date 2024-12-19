@@ -3,7 +3,7 @@ import cv2
 import sys
 import math
 
-__name__ = ['NormalizeImage', 'DetResizeForTest', 'ToCHWImage', 'KeepKeys']
+__all__ = ['NormalizeImage', 'DetResizeForTest', 'ToCHWImage', 'KeepKeys']
 
 
 class NormalizeImage(object):

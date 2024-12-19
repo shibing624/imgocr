@@ -4,5 +4,6 @@ shapely
 numpy
 pillow
 pyclipper
+requests
 onnxruntime # onnxruntime-gpu
 opencv-python-headless~=4.10.0.84

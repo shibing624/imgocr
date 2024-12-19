@@ -4,8 +4,38 @@ import argparse
 import math
 from PIL import Image, ImageDraw, ImageFont
 from pathlib import Path
+import os
+import requests
+from tqdm import tqdm
 
 module_dir = Path(__file__).resolve().parent
+
+
+def http_get(url, save_path):
+    """
+    Downloads a URL to a given path on disc
+    """
+    if os.path.dirname(save_path) != '':
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
+
+    req = requests.get(url, stream=True)
+    if req.status_code != 200:
+        print("Exception when trying to download {}. Response {}".format(url, req.status_code), file=sys.stderr)
+        req.raise_for_status()
+        return
+
+    download_filepath = save_path + "_part"
+    with open(download_filepath, "wb") as file_binary:
+        content_length = req.headers.get('Content-Length')
+        total = int(content_length) if content_length is not None else None
+        progress = tqdm(unit="B", total=total, unit_scale=True)
+        for chunk in req.iter_content(chunk_size=1024):
+            if chunk:  # filter out keep-alive new chunks
+                progress.update(len(chunk))
+                file_binary.write(chunk)
+
+    os.rename(download_filepath, save_path)
+    progress.close()
 
 
 def get_rotate_crop_image(img, points):
@@ -251,11 +281,13 @@ def infer_args():
     # params for cpu or gpu
     parser.add_argument("--use_gpu", type=str2bool, default=False)
     parser.add_argument("--gpu_id", type=int, default=0)
+    parser.add_argument("--is_efficiency_mode", type=str2bool, default=True,
+                        help="Whether to use efficiency mode, True 使用高效率模型（mobile），False 使用高精度模型(server)")
 
     # params for text detector
     parser.add_argument("--det_algorithm", type=str, default="DB")
-    parser.add_argument("--det_model_dir", type=str,
-                        default=str(module_dir / "models/ppocrv4/det.onnx"))
+    parser.add_argument("--det_model_path", type=str,
+                        default=str(module_dir / "models/ch_PP-OCRv4_det_mobile_infer.onnx"))
     parser.add_argument("--det_limit_side_len", type=float, default=960)
     parser.add_argument("--det_limit_type", type=str, default="max")
     parser.add_argument("--det_box_type", type=str, default="quad")
@@ -269,8 +301,8 @@ def infer_args():
 
     # params for text recognizer
     parser.add_argument("--rec_algorithm", type=str, default="SVTR_LCNet")
-    parser.add_argument("--rec_model_dir", type=str,
-                        default=str(module_dir / "models/ppocrv4/rec.onnx"))
+    parser.add_argument("--rec_model_path", type=str,
+                        default=str(module_dir / "models/ch_PP-OCRv4_rec_mobile_infer.onnx"))
     parser.add_argument("--rec_image_inverse", type=str2bool, default=True)
     parser.add_argument("--rec_image_shape", type=str, default="3, 48, 320")  # 3, 48, 320 must in this order
     parser.add_argument("--rec_batch_num", type=int, default=6)
@@ -282,8 +314,8 @@ def infer_args():
 
     # params for text classifier
     parser.add_argument("--use_angle_cls", type=str2bool, default=True)
-    parser.add_argument("--cls_model_dir", type=str,
-                        default=str(module_dir / "models/ppocrv4/cls.onnx"))
+    parser.add_argument("--cls_model_path", type=str,
+                        default=str(module_dir / "models/ch_PP-OCRv4_cls_infer.onnx"))
     parser.add_argument("--cls_image_shape", type=str, default="3, 48, 192")
     parser.add_argument("--label_list", default=["0", "180"])
     parser.add_argument("--cls_batch_num", type=int, default=6)

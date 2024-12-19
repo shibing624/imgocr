@@ -46,14 +46,14 @@ def cli(args):
     for i in range(0, len(images), chunk_size):
         chunk_imgs = images[i:i + chunk_size]
         ocr_results = []
-        for img in tqdm(chunk_imgs):
+        for path in tqdm(chunk_imgs):
             try:
-                result = m.ocr(img)
+                result = m.ocr(path)
                 ocr_results.append(result)
-                save_img_path = os.path.join(args.output_dir, os.path.basename(img))
-                drwa_ocr_boxes(img, result, save_img_path)
+                save_img_path = os.path.join(args.output_dir, os.path.basename(path))
+                drwa_ocr_boxes(path, result, save_img_path)
             except Exception as e:
-                logger.error(f'error: {e}, img: {img}')
+                logger.error(f'error: {e}, img: {path}')
                 ocr_results.append("")
         # Save part result to dataframe
         chunk_df = pd.DataFrame({'images': chunk_imgs, 'ocr_results': ocr_results})

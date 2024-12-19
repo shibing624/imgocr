@@ -42,10 +42,10 @@ PP-OCRv4串联系统由文本检测模型和文本识别模型串联完成，首
 
 OCR 检测/识别 benchmark：
 
-| 模型               | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(M)  | 
-|------------------|-----------|-----------|-----------------|------------------|------------|
-| PP-OCRv4-mobile  | 77.79     | 78.20     | 2.719474        | 79.1097           | 14         | 
-
+| 模型                      | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(M) | 
+|-------------------------|-----------|-----------|--------------|--------------|-----------|
+| PP-OCRv4-mobile(高效率，默认) | 77.79     | 78.20     | 2.71         | 79.11        | 14        | 
+| PP-OCRv4-server(高精度)	   | 82.69	    | 84.04	    | 24.92	       | 2742.31	     | 207       | 
 
 > GPU 推理耗时基于 NVIDIA Tesla T4 机器，精度类型为 FP32，CPU 推理速度基于 Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz，精度类型为 FP32。
 
@@ -89,10 +89,12 @@ example: [examples/ocr_demo.py](https://github.com/shibing624/imgocr/blob/main/e
 
 ```python
 from imgocr import ImgOcr
-m = ImgOcr(use_gpu=False)
+m = ImgOcr(use_gpu=False, is_efficiency_mode=True)
 result = m.ocr("data/11.jpg")
 print("result:", result)
 ```
+
+>  is_efficiency_mode: 是否使用高效率模型，默认True，使用高效率模型(mobile，14MB)，速度更快，精度稍低。如果需要更高精度，设置为False，使用高精度模型(server，207MB)。
 
 output:
 ![](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/11.jpg)
