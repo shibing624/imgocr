@@ -26,11 +26,11 @@
 ## Showcase
 
 
-| 银行存根                                                                                                     | 表格                                                                                                        |
-|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
-| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg" width="500"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg" width="600">  |
-| 火车票                                                                                                      | 英文论文                                                                                                      |
-| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg" width="500"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png" width="600"> |
+| 银行存根 | ![银行存根](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg) |
+|----------|----------------------------------------------------------------------------------------------|
+| 表格     | ![表格](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg)     |
+| 火车票   | ![火车票](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg)   |
+| 英文论文 | ![英文论文](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png) |
 
 ## Benchmark
 
