@@ -19,7 +19,7 @@ class TestImgOcr(unittest.TestCase):
     def setUp(self):
         # Initialize the ImgOcr instance with default parameters
         self.m = ImgOcr()
-        self.img_path = os.path.join(pwd_path, '11.jpg')
+        self.img_path = os.path.join(pwd_path, 'data/11.jpg')
 
     def test_ocr_with_detection_and_recognition(self):
         result = self.m.ocr(self.img_path, det=True, rec=True)
