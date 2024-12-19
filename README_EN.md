@@ -23,11 +23,12 @@
 
 ## Showcase
 
-| Bank Stub | Form |
-|--------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg" width="500"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg" width="600"> |
-| Train Ticket | English Paper |
-| <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg" width="500"> | <img src="https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png" width="600"> |
+
+| 银行存根 | ![银行存根](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg) |
+|----------|----------------------------------------------------------------------------------------------|
+| 表格     | ![表格](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg)     |
+| 火车票   | ![火车票](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg)   |
+| 英文论文 | ![英文论文](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png) |
 
 ## Benchmark
 
@@ -62,12 +63,14 @@ python examples/gradio_demo.py
 No need to install deep learning libraries such as paddlepaddle and paddleocr, just install onnxruntime and you can use imgocr to call it.
 
 ```shell
+pip install onnxruntime # pip install onnxruntime-gpu for gpu
 pip install -U imgocr
 ```
 
 or
 
 ```shell
+pip install onnxruntime # pip install onnxruntime-gpu for gpu
 pip install -r requirements.txt
 git clone https://github.com/shibing624/imgocr.git
 cd imgocr
@@ -82,7 +85,7 @@ example: [examples/ocr_demo.py](https://github.com/shibing624/imgocr/blob/main/e
 
 ```python
 from imgocr import ImgOcr
-m = ImgOcr()
+m = ImgOcr(use_gpu=False)
 result = m.ocr("data/11.jpg")
 print("result:", result)
 ```
