@@ -11,7 +11,7 @@ from imgocr import ImgOcr
 from imgocr import drwa_ocr_boxes
 
 if __name__ == "__main__":
-    m = ImgOcr()
+    m = ImgOcr(use_gpu=False)
     img_path = "data/11.jpg"
     s = time.time()
     result = m.ocr(img_path)

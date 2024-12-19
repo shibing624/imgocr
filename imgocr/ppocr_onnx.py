@@ -5,11 +5,14 @@
 """
 from typing import Union, List
 import argparse
-import PIL
 from PIL import Image
 import numpy as np
 import cv2
-from cv2.typing import MatLike
+
+try:
+    from cv2.typing import MatLike
+except ImportError:
+    from numpy import ndarray as MatLike
 from loguru import logger
 from .predict_system import TextSystem
 from .utils import infer_args
@@ -28,7 +31,7 @@ class ImgOcr(TextSystem):
         # 初始化模型
         super().__init__(params)
 
-    def ocr(self, img: Union[str, PIL.Image.Image, MatLike], det=True, rec=True, cls=True):
+    def ocr(self, img: Union[str, Image.Image, MatLike], det=True, rec=True, cls=True) -> List:
         """
         Perform OCR on the input image.
 
@@ -79,7 +82,7 @@ class ImgOcr(TextSystem):
             return ocr_res
 
 
-def load_image(img: Union[str, PIL.Image.Image, MatLike]) -> np.ndarray:
+def load_image(img: Union[str, Image.Image, MatLike]) -> np.ndarray:
     """
     Load an image from a file path, PIL image, or numpy array.
 
@@ -97,7 +100,7 @@ def load_image(img: Union[str, PIL.Image.Image, MatLike]) -> np.ndarray:
         img = cv2.imread(img_path)
         if img is None:
             raise FileNotFoundError(f"The image file is not found: {img_path}")
-    elif isinstance(img, PIL.Image.Image):
+    elif isinstance(img, Image.Image):
         img = np.array(img)
         img = img[:, :, ::-1]  # Convert RGB to BGR
     elif isinstance(img, MatLike):
@@ -109,7 +112,8 @@ def load_image(img: Union[str, PIL.Image.Image, MatLike]) -> np.ndarray:
     return img
 
 
-def drwa_ocr_boxes(origin_img, ocr_result, saved_img_path="draw_ocr.jpg"):
+def drwa_ocr_boxes(origin_img: Union[str, Image.Image, MatLike], ocr_result: List,
+                   saved_img_path: str = "draw_ocr.jpg"):
     """
     Draw the OCR results on the input image and save the result.
     :param origin_img:

@@ -67,12 +67,14 @@ python examples/gradio_demo.py
 无需安装paddlepaddle、paddleocr等深度学习库，仅需安装onnxruntime，即可用imgocr调用。
 
 ```shell
-pip install -U imgocr
+pip install onnxruntime # pip install onnxruntime-gpu for gpu
+pip install imgocr
 ```
 
 or
 
 ```shell
+pip install onnxruntime # pip install onnxruntime-gpu for gpu
 pip install -r requirements.txt
 git clone https://github.com/shibing624/imgocr.git
 cd imgocr
@@ -87,7 +89,7 @@ example: [examples/ocr_demo.py](https://github.com/shibing624/imgocr/blob/main/e
 
 ```python
 from imgocr import ImgOcr
-m = ImgOcr()
+m = ImgOcr(use_gpu=False)
 result = m.ocr("data/11.jpg")
 print("result:", result)
 ```
