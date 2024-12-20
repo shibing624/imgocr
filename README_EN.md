@@ -91,6 +91,8 @@ result = m.ocr("data/11.jpg")
 print("result:", result)
 ```
 
+> `is_efficiency_mode`: Whether to use the high-efficiency model, the default is `True`, using the high-efficiency model (mobile, 14MB), which is faster and slightly less accurate. This model has been built-in and integrated in the `imgocr/models` folder. If higher accuracy is required, set it to False, use the high-precision model (server, 207MB), and the code will be automatically downloaded to the `imgocr/models` folder.
+
 output:
 ![](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/11.jpg)
 
