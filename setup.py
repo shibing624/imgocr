@@ -23,7 +23,7 @@ extras_require = {
 setup(
     name='imgocr',
     version=__version__,
-    description='Image ocr tool.',
+    description='Image ocr tool, use ppocr onnx model.',
     long_description=readme,
     long_description_content_type='text/markdown',
     author='XuMing',
