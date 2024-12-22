@@ -86,14 +86,35 @@ example: [examples/ocr_demo.py](https://github.com/shibing624/imgocr/blob/main/e
 
 ```python
 from imgocr import ImgOcr
-m = ImgOcr(use_gpu=False)
+m = ImgOcr(use_gpu=False, is_efficiency_mode=True)
 result = m.ocr("data/11.jpg")
 print("result:", result)
+for i in result:
+    print(i['text'])
 ```
 
 > `is_efficiency_mode`: Whether to use the high-efficiency model, the default is `True`, using the high-efficiency model (mobile, 14MB), which is faster and slightly less accurate. This model has been built-in and integrated in the `imgocr/models` folder. If higher accuracy is required, set it to False, use the high-precision model (server, 207MB), and the code will be automatically downloaded to the `imgocr/models` folder.
 
 output:
+```shell
+result: [{'box': [[28.0, 37.0], [302.0, 39.0], [302.0, 72.0], [27.0, 70.0]], 'text': '纯臻营养护发素', 'score': 0.9978395700454712}, {'box': [[26.0, 83.0], [173.0, 83.0], [173.0, 104.0], [26.0, 104.0]], 'text': '产品信息/参数', 'score': 0.9898329377174377}, {'box': [[27.0, 112.0], [331.0, 112.0], [331.0, 135.0], [27.0, 135.0]], 'text': '（45元/每公斤，100公斤起订）', 'score': 0.9659210443496704}, {'box': [[25.0, 143.0], [281.0, 143.0], [281.0, 165.0], [25.0, 165.0]], 'text': '每瓶22元，1000瓶起订）', 'score': 0.9928666353225708}, {'box': [[26.0, 179.0], [300.0, 179.0], [300.0, 195.0], [26.0, 195.0]], 'text': '【品牌】：代加工方式/OEMODM', 'score': 0.9843945503234863}, {'box': [[26.0, 210.0], [234.0, 210.0], [234.0, 227.0], [26.0, 227.0]], 'text': '【品名】：纯臻营养护发素', 'score': 0.9963161945343018}, {'box': [[25.0, 239.0], [241.0, 239.0], [241.0, 259.0], [25.0, 259.0]], 'text': '【产品编号】：YM-X-3011', 'score': 0.9848018884658813}, {'box': [[413.0, 232.0], [430.0, 232.0], [430.0, 306.0], [413.0, 306.0]], 'text': 'ODMOEM', 'score': 0.9908049702644348}, {'box': [[24.0, 271.0], [180.0, 271.0], [180.0, 290.0], [24.0, 290.0]], 'text': '【净含量】：220ml', 'score': 0.9892324209213257}, {'box': [[26.0, 303.0], [251.0, 303.0], [251.0, 319.0], [26.0, 319.0]], 'text': '【适用人群】：适合所有肤质', 'score': 0.9909228682518005}, {'box': [[26.0, 335.0], [344.0, 335.0], [344.0, 352.0], [26.0, 352.0]], 'text': '【主要成分】：鲸蜡硬脂醇、燕麦β-葡聚', 'score': 0.9828647971153259}, {'box': [[26.0, 364.0], [281.0, 364.0], [281.0, 384.0], [26.0, 384.0]], 'text': '糖、椰油酰胺丙基甜菜碱、泛醌', 'score': 0.9505177140235901}, {'box': [[368.0, 368.0], [477.0, 368.0], [477.0, 389.0], [368.0, 389.0]], 'text': '（成品包材）', 'score': 0.992072343826294}, {'box': [[26.0, 397.0], [360.0, 397.0], [360.0, 414.0], [26.0, 414.0]], 'text': '【主要功能】：可紧致头发磷层，从而达到', 'score': 0.9904329180717468}, {'box': [[28.0, 429.0], [370.0, 429.0], [370.0, 445.0], [28.0, 445.0]], 'text': '即时持久改善头发光泽的效果，给干燥的头', 'score': 0.9874186515808105}, {'box': [[27.0, 458.0], [137.0, 458.0], [137.0, 479.0], [27.0, 479.0]], 'text': '发足够的滋养', 'score': 0.9987384676933289}]
+纯臻营养护发素
+产品信息/参数
+（45元/每公斤，100公斤起订）
+每瓶22元，1000瓶起订）
+【品牌】：代加工方式/OEMODM
+【品名】：纯臻营养护发素
+【产品编号】：YM-X-3011
+ODMOEM
+【净含量】：220ml
+【适用人群】：适合所有肤质
+【主要成分】：鲸蜡硬脂醇、燕麦β-葡聚
+糖、椰油酰胺丙基甜菜碱、泛醌
+（成品包材）
+【主要功能】：可紧致头发磷层，从而达到
+即时持久改善头发光泽的效果，给干燥的头
+发足够的滋养
+```
 ![](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/11.jpg)
 
 ### Command Line Interface(CLI)
