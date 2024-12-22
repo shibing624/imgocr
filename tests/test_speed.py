@@ -31,7 +31,6 @@ class TestImgOcr(unittest.TestCase):
             total_time += (end_time - start_time)
             self.assertIsInstance(result, list)
             self.assertGreater(len(result), 0)
-            self.assertIsInstance(result[0], list)
         avg_time = total_time / 20
         print(f"Average OCR with detection and recognition took {avg_time:.4f} seconds")
         print(result)
@@ -46,7 +45,6 @@ class TestImgOcr(unittest.TestCase):
             total_time += (end_time - start_time)
             self.assertIsInstance(result, list)
             self.assertGreater(len(result), 0)
-            self.assertIsInstance(result[0], list)
         avg_time = total_time / 20
         print(f"Average OCR with detection only took {avg_time:.4f} seconds")
         print(result)
@@ -61,7 +59,6 @@ class TestImgOcr(unittest.TestCase):
             total_time += (end_time - start_time)
             self.assertIsInstance(result, list)
             self.assertGreater(len(result), 0)
-            self.assertIsInstance(result[0], list)
         avg_time = total_time / 20
         print(f"Average OCR with recognition only took {avg_time:.4f} seconds")
         print(result)

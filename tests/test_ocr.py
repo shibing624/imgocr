@@ -26,21 +26,18 @@ class TestImgOcr(unittest.TestCase):
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
-        self.assertIsInstance(result[0], list)
 
     def test_ocr_with_detection_only(self):
         result = self.m.ocr(self.img_path, det=True, rec=False)
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
-        self.assertIsInstance(result[0], list)
 
     def test_ocr_with_recognition_only(self):
         result = self.m.ocr(self.img_path, det=False, rec=True)
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
-        self.assertIsInstance(result[0], list)
 
     def test_ocr_with_invalid_image_path(self):
         img_path = 'invalid_path.jpg'

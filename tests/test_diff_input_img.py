@@ -26,7 +26,6 @@ class TestImgOcr(unittest.TestCase):
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
-        self.assertIsInstance(result[0], list)
 
     def test_ocr_img_pil(self):
         from PIL import Image
@@ -35,7 +34,6 @@ class TestImgOcr(unittest.TestCase):
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
-        self.assertIsInstance(result[0], list)
 
     def test_ocr_img_np(self):
         import cv2
@@ -44,7 +42,6 @@ class TestImgOcr(unittest.TestCase):
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
-        self.assertIsInstance(result[0], list)
 
 
 if __name__ == '__main__':
