@@ -13,7 +13,7 @@ from tqdm import tqdm
 import os
 
 sys.path.append('..')
-from imgocr.ppocr_onnx import ImgOcr, drwa_ocr_boxes
+from imgocr.ppocr_onnx import ImgOcr
 
 
 def save_partial_results(df, output_file, is_first_chunk):
@@ -48,10 +48,10 @@ def cli(args):
         ocr_results = []
         for path in tqdm(chunk_imgs):
             try:
-                result = m.ocr(path)
+                res = m.ocr(path)
+                res_list = [i['text'] for i in res if i]
+                result = "\n".join(res_list)
                 ocr_results.append(result)
-                save_img_path = os.path.join(args.output_dir, os.path.basename(path))
-                drwa_ocr_boxes(path, result, save_img_path)
             except Exception as e:
                 logger.error(f'error: {e}, img: {path}')
                 ocr_results.append("")

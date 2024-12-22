@@ -8,7 +8,6 @@ import sys
 
 sys.path.append('..')
 from imgocr import ImgOcr
-from imgocr import drwa_ocr_boxes
 
 if __name__ == "__main__":
     m = ImgOcr(use_gpu=False)
@@ -18,8 +17,8 @@ if __name__ == "__main__":
     e = time.time()
     print("total time: {:.4f} s".format(e - s))
     print("result:", result)
-    for line in result[0]:
-        print(line)
+    for line in result:
+        print(line['text'])
 
     print('-------------------\n')
 
@@ -29,9 +28,5 @@ if __name__ == "__main__":
     e = time.time()
     print("total time: {:.4f} s".format(e - s))
     print("result:", result)
-    for line in result[0]:
-        print(line)
-
-    # draw boxes
-    drwa_ocr_boxes(img_path, result, 'hard1_box.jpg')
-    print('Save result to 11_box.jpg')
+    for line in result:
+        print(line['text'])

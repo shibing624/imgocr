@@ -11,9 +11,9 @@ model = ImgOcr()
 
 
 def get_text(img_path):
-    ocr_result = model.ocr(img_path)[0]
+    ocr_result = model.ocr(img_path)
     print("{} \t\t {}".format(img_path, ocr_result))
-    ocr_text = [i[-1][0] for i in ocr_result]
+    ocr_text = [i['text'] for i in ocr_result]
     r = '\n'.join(ocr_text)
     print(r)
     return r
