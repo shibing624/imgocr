@@ -7,7 +7,7 @@
 import sys
 import unittest
 import os
-
+from pathlib import Path
 sys.path.append('..')
 from imgocr.ppocr_onnx import ImgOcr
 
@@ -39,6 +39,21 @@ class TestImgOcr(unittest.TestCase):
         import cv2
         img = cv2.imread(self.img_path)
         result = self.m.ocr(img)
+        print(result)
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+
+    def test_ocr_img_bytes(self):
+        with open(self.img_path, 'rb') as f:
+            img_bytes = f.read()
+        result = self.m.ocr(img_bytes)
+        print(result)
+        self.assertIsInstance(result, list)
+        self.assertGreater(len(result), 0)
+
+    def test_ocr_img_pathlib(self):
+        img_path = Path(self.img_path)
+        result = self.m.ocr(img_path)
         print(result)
         self.assertIsInstance(result, list)
         self.assertGreater(len(result), 0)
