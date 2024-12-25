@@ -2,8 +2,8 @@ images,ocr_results
 data/ger_1.jpg,"EPPING
 Twinned with
 Eppingen,Germany"
-data/ger_2.jpg,"Halten Sie,
-was Sie versprechen.
+data/ger_2.jpg,"HaltenSie,
+wasSie versprechen.
 Und geben Sie noch was dazu."
 data/00059985.jpg,"小学数学第八册第三单元测试题
 （小数乘法）
@@ -14,19 +14,20 @@ data/00059985.jpg,"小学数学第八册第三单元测试题
 1.直接写出得数。
 （10分）
 0.8×25=
-0×4.23=
+0X4.23=
 0.57+0.43=
 2.4×0.2=
 0.02
 ×500=
 2.8X10=
 8.29×100=
-2.5×0.4=4.87-1.7=
+2.5×0.4=
+4.87-1.7=
 8.07
-×1000=
+X1000=
 2.用竖式计算。（12分）
 2.97×3.8=
-7.05X0.84="
+7.05×0.84="
 data/japan_2.jpg,"天然の
 後味の
 濃厚
@@ -59,23 +60,23 @@ data/japan_2.jpg,"天然の
 朝
 後味寸"
 data/model_prod_flow_ch.png,"Paddle.jit.saveO
- best_accuracy.pdopt
+best_accuracy.pdopt
 inference.pdmodel
-: ch_det_mv3
+ ch_det_mv3
 模型训练
- best_accuracy.pdparams
+best_accuracy.pdparams
 模型转换
 opt优化模型
-: inference.pdiparams
-db_opt.nb
-: best_accuracy.states"
+inference.pdiparams
+_db_opt.nb
+ best_accuracy.states"
 data/japan_1.jpg,。未来元氨。
 data/00056221.jpg,"7788.com
 Z57A001950
 杭州东售
 2013年07月07日13:39开
 06车12B号
-二等座
+等座
 G7512次
 杭州东
 上海虹桥
@@ -88,7 +89,7 @@ ShangHaiHongQiao
 3623301993****0941
 9004-1300-5707-08A0-0195-0
 和谐号
-CanonPowerShotA3400 ISF2.8 1/20s IS0400"
+Canon PowerShot A3400 IS F2.8 1/20s IS0400"
 data/00009282.jpg,"Meters/bonwe
 洗涤说明
 最高洗涤温度30°℃
@@ -102,12 +103,10 @@ data/00009282.jpg,"Meters/bonwe
 分开洗涤，不宜长时间浸泡，有
 钮扣或拉链的服饰先将钮扣或拉链
 扣好、熨烫时采用仅蒸汽熨烫。"
-data/00057937.jpg,"AlicialLilac
-Iibe.com
-3504811979110
-院市属瑞金医院
+data/00057937.jpg,"3504811979110
+院附属瑞金医院
 标本号：OA
-报告单（临床内分泌）
+盛报告单（临床内分泌）
 标本种类：血清
 标志提示：
 门诊号：E05535540
@@ -117,7 +116,6 @@ Iibe.com
 门诊科别：门诊内分泌
 申请医生：孙首悦
 检测日期：2010
-年
 龄：31
 检验备注：
 项目
@@ -173,12 +171,13 @@ ODMOEM
 发足够的滋养"
 data/french_0.jpg,"Mairie du ler
 Palais du LOUVRE
-LES ARTS DECORATIFS
+LES ARTSDECORATIFS
 Musee du LouVRE
 Theatre
 du PALAIS-ROYAL"
-data/00111002.jpg,"CreditC
+data/00111002.jpg,"CreditCe
 中国工商银行
+INDOSTRUL ADCOMMERCIAL BANKOHNA
 持卡人存根
 商户名称&编号（MERCHANTNAME&CODE）
 工行浣纱支行积分兑换
@@ -187,18 +186,18 @@ data/00111002.jpg,"CreditC
 终端号（TERMINAL)
 60128018
 001
-卡号（CARDNUMBER）：
+卡号（CARDNUMBER)：
 622210512
 FS
 卡类别（CARDTYPE）
 有效期（EXPIRY)
 牡丹准贷记卡
 交易日期DATE)
-交易时间（TIME）
+交易时间（TME)
 2012-10-23
 12:43:15
-批次号（BATCHNO.)
-流水号（TRACEHO)
+批次号（BATCHNO）
+流水号（TRACENO)
 000016
 积分兑奖
 信用卡积分：50000
@@ -212,7 +211,7 @@ data/korean_1.jpg,"0明百
 data/00207393.jpg,"中国农业银行
 AGRICULTURAL BANK OF CHINA
 本网点办
-理各类全融业务"
+理各类金融业务"
 data/00015504.jpg,"2.2截至报告期末的普通股股东总数，前十名普通股股东、前十名无限售条件的普通
 股股东的持股情况
 单位：股
@@ -289,16 +288,15 @@ Berhad
 data/00006737.jpg,"登机牌
 BOARDING
 PASS
+日期 DATE
 舱位CLASS
 序号SERIALNO.
-座位号
-SEAT NO
+座位号SEATNO
 航班 FLIGHT
-日期DATE
-MU 2379
 03DEC
 W
 035
+MU 2379
 始发地
 FROM
 登机口
@@ -320,18 +318,18 @@ ETKT7813699238489/1
 data/eng_paper.png,"ACKNOWLEDGEMENTS
 We would like to thank all the designers and
 contributors who have been involved in the
-production of this book; their contributions
-have been indispensable to its creation. We
+production of this book;their contributions
+have been indispensable to its creation.We
 would also like to express our gratitude to all
 the producers for their invaluable opinions
-and assistance throughout this project. And to
+and assistance throughout this project.And to
 the many others whose names are not credited
 but have made specific input in this book, we
 thank you for your continuous support."
 data/hard1.jpg,"正品促销
 大桶装更划算
 强力去污符合国标
--40°℃深度防冻不结冰
+-40℃深度防冻不结冰
 10.0起
 10.0起
 5.8起

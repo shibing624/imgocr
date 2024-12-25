@@ -4,4 +4,5 @@
 @description: 
 """
 from imgocr.version import __version__  # noqa, isort:skip
-from imgocr.ppocr_onnx import ImgOcr, draw_ocr_boxes, load_image
+from imgocr.ppocr_onnx import ImgOcr, draw_ocr_boxes
+from imgocr.image_loader import load_image

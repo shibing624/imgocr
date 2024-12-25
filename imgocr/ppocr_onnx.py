@@ -4,24 +4,17 @@
 @description: main module.
 """
 from typing import Union, List
-from io import BytesIO
+import os
 from pathlib import Path
 import argparse
 from PIL import Image
-import numpy as np
 import cv2
-import os
 
-try:
-    from cv2.typing import MatLike
-except ImportError:
-    from numpy import ndarray as MatLike
 from .predict_system import TextSystem
+from .image_loader import load_image, MatLike
 from .utils import infer_args, draw_ocr, http_get
 
 pwd_path = os.path.abspath(os.path.dirname(__file__))
-
-__all__ = ['ImgOcr', 'draw_ocr_boxes', 'load_image']
 
 MODEL_URLS = {
     "server": {
@@ -78,7 +71,7 @@ class ImgOcr(TextSystem):
             cls: Whether to perform text classification.
 
         Returns:
-            The OCR result based on the detection, recognition, and classification.
+            List[dict], The OCR result based on the detection, recognition, and classification.
         """
         img = load_image(img)
 
@@ -98,50 +91,6 @@ class ImgOcr(TextSystem):
             rec_res = self.text_recognizer(img)
             ocr_res = [{'text': res[0], 'score': res[1]} for res in rec_res]
             return ocr_res
-
-
-def img_to_ndarray(img: Image.Image) -> np.ndarray:
-    # Convert the image to grayscale if it is in binary mode
-    if img.mode == "1":
-        img = img.convert("L")
-    # Convert the PIL image to a numpy array
-    return np.array(img)
-
-
-def load_image(img: Union[str, Image.Image, MatLike, Path, bytes]) -> np.ndarray:
-    """
-    Load an image from a file path, PIL image, numpy array, Path object, or bytes.
-
-    Args:
-        img: The input image in one of the following formats:
-            - str: Path to the image file.
-            - PIL.Image: A Python Imaging Library (PIL) image.
-            - MatLike: A numpy array (as used by OpenCV).
-            - Path: A pathlib.Path object pointing to the image file.
-            - bytes: Image data in bytes.
-
-    Returns:
-        The loaded image as a numpy array.
-    """
-    if isinstance(img, str) or isinstance(img, Path):
-        img_path = str(img)
-        if not os.path.exists(img_path):
-            raise FileNotFoundError(f"The image file is not found: {img_path}")
-        img = cv2.imread(img_path)
-    elif isinstance(img, bytes):
-        img_obj = Image.open(BytesIO(img))
-        img = img_to_ndarray(img_obj)
-        img = img[:, :, ::-1]  # Convert RGB to BGR
-    elif isinstance(img, Image.Image):
-        img = img_to_ndarray(img)
-        img = img[:, :, ::-1]  # Convert RGB to BGR
-    elif isinstance(img, MatLike):
-        if img.size == 0:
-            raise ValueError("The input image is empty")
-    else:
-        raise TypeError(f"Unsupported input type: {type(img)}. "
-                        f"Supported types are str, PIL.Image, numpy.ndarray, Path, and bytes.")
-    return img
 
 
 def draw_ocr_boxes(
