@@ -76,11 +76,11 @@ pip install imgocr
 or
 
 ```shell
-pip install onnxruntime # pip install onnxruntime-gpu for gpu
-pip install -r requirements.txt
 git clone https://github.com/shibing624/imgocr.git
 cd imgocr
-pip install --no-deps .
+pip install onnxruntime # pip install onnxruntime-gpu for gpu
+pip install -r requirements.txt
+pip install .
 ```
 
 ## Usage
