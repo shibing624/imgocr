@@ -280,7 +280,6 @@ def infer_args():
     parser = argparse.ArgumentParser()
     # params for cpu or gpu
     parser.add_argument("--use_gpu", type=str2bool, default=False)
-    parser.add_argument("--gpu_id", type=int, default=0)
     parser.add_argument("--is_efficiency_mode", type=str2bool, default=True,
                         help="Whether to use efficiency mode, True 使用高效率模型（mobile），False 使用高精度模型(server)")
 

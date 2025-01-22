@@ -3,15 +3,10 @@ import onnxruntime as ort
 
 class PredictBase:
 
-    def get_onnx_session(self, model_path, use_gpu=False, gpu_id=0):
+    def get_onnx_session(self, model_path, use_gpu=False):
         # Use GPU if requested and available
         if use_gpu:
-            providers = [
-                (
-                    "CUDAExecutionProvider",
-                    {"device_id": gpu_id, "cudnn_conv_algo_search": "DEFAULT"},
-                )
-            ]
+            providers = ["CUDAExecutionProvider"]
         else:
             providers = ["CPUExecutionProvider"]
         # Create the ONNX inference session with the determined providers

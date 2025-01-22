@@ -42,7 +42,7 @@ class TextDetector(PredictBase):
         self.postprocess_op = DBPostProcess(**postprocess_params)
 
         # 初始化模型
-        self.det_onnx_session = self.get_onnx_session(args.det_model_path, args.use_gpu, args.gpu_id)
+        self.det_onnx_session = self.get_onnx_session(args.det_model_path, args.use_gpu)
         self.det_input_name = self.get_input_name(self.det_onnx_session)
         self.det_output_name = self.get_output_name(self.det_onnx_session)
 

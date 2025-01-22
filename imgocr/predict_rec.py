@@ -18,7 +18,7 @@ class TextRecognizer(PredictBase):
         )
 
         # 初始化模型
-        self.rec_onnx_session = self.get_onnx_session(args.rec_model_path, args.use_gpu, args.gpu_id)
+        self.rec_onnx_session = self.get_onnx_session(args.rec_model_path, args.use_gpu)
         self.rec_input_name = self.get_input_name(self.rec_onnx_session)
         self.rec_output_name = self.get_output_name(self.rec_onnx_session)
 
@@ -79,7 +79,6 @@ class TextRecognizer(PredictBase):
         return padding_im
 
     def resize_norm_img_vl(self, img, image_shape):
-
         imgC, imgH, imgW = image_shape
         img = img[:, :, ::-1]  # bgr2rgb
         resized_image = cv2.resize(img, (imgW, imgH), interpolation=cv2.INTER_LINEAR)
@@ -114,7 +113,6 @@ class TextRecognizer(PredictBase):
         return np.reshape(img_black, (c, row, col)).astype(np.float32)
 
     def srn_other_inputs(self, image_shape, num_heads, max_text_length):
-
         imgC, imgH, imgW = image_shape
         feature_dim = int((imgH / 8) * (imgW / 8))
 
@@ -225,7 +223,6 @@ class TextRecognizer(PredictBase):
         return img
 
     def resize_norm_img_svtr(self, img, image_shape):
-
         imgC, imgH, imgW = image_shape
         resized_image = cv2.resize(img, (imgW, imgH), interpolation=cv2.INTER_LINEAR)
         resized_image = resized_image.astype("float32")
@@ -235,7 +232,6 @@ class TextRecognizer(PredictBase):
         return resized_image
 
     def resize_norm_img_abinet(self, img, image_shape):
-
         imgC, imgH, imgW = image_shape
 
         resized_image = cv2.resize(img, (imgW, imgH), interpolation=cv2.INTER_LINEAR)
@@ -251,7 +247,6 @@ class TextRecognizer(PredictBase):
         return resized_image
 
     def norm_img_can(self, img, image_shape):
-
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)  # CAN only predict gray scale image
 
         if self.inverse:
