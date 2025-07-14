@@ -11,7 +11,7 @@ from imgocr import ImgOcr
 from imgocr import draw_ocr_boxes
 
 if __name__ == "__main__":
-    m = ImgOcr(use_gpu=False, is_efficiency_mode=True, model_version='v5')
+    m = ImgOcr(use_gpu=False)
     img_path = "data/11.jpg"
     s = time.time()
     result = m.ocr(img_path)
