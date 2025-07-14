@@ -18,9 +18,9 @@
 [![Wechat Group](https://img.shields.io/badge/wechat-group-green.svg?logo=wechat)](#Contact)
 
 
-**imgocr**：Python3 package for Chinese/English OCR, with paddleocr-v4/paddleocr-v5 onnx model(~16MB).
+**imgocr**：Python3 package for Chinese/English OCR, with paddleocr-v4/paddleocr-v5 onnx model(~20MB).
 
-**imgocr**：基于PaddleOCR-v5-onnx模型（~16MB）推理，性能更高，可实现 CPU 上毫秒级的 OCR 精准预测，在通用场景上达到开源SOTA。
+**imgocr**：基于PaddleOCR-v5-onnx模型（~20MB）推理，性能更高，可实现 CPU 上毫秒级的 OCR 精准预测，在通用场景上达到开源SOTA。
 
 
 ## Showcase
@@ -42,12 +42,12 @@ PP-OCRv4串联系统由文本检测模型和文本识别模型串联完成，首
 
 OCR 检测/识别 benchmark：
 
-| 模型                     | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(MB) | 下载地址 |
-|------------------------|-----------|-----------|--------------|--------------|------------|--------|
-| PP-OCRv4-mobile(高效率)   | 63.8      | 78.74     | 2.71         | 79.11        | 14         | [mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv4-server(高精度)	  | 69.2	     | 85.19	    | 24.92	       | 2742.31	     | 207        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv5-mobile(高效率，默认)	 | 79.0	     | 81.29	    | 6.36	        | 82.11	       | 20         | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv5-server(高精度)	  | 83.8	     | 86.38	    | 28.15	       | 2900.12	     | 160        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| 模型                   | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(MB) | 下载地址 |
+|----------------------|-----------|-----------|--------------|--------------|------------|--------|
+| PP-OCRv4-mobile   | 63.8      | 78.74     | 2.71         | 79.11        | 14         | [mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv4-server	 | 69.2	     | 85.19	    | 24.92	       | 2742.31	     | 207        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv5-mobile(默认)	 | 79.0	     | 81.29	    | 6.36	        | 82.11	       | 20         | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv5-server	 | 83.8	     | 86.38	    | 28.15	       | 2900.12	     | 160        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
 
 
 > GPU 推理耗时基于 NVIDIA Tesla T4 机器，精度类型为 FP32，CPU 推理速度基于 Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz，精度类型为 FP32。
@@ -101,7 +101,7 @@ for i in result:
     print(i['text'])
 ```
 
-> `is_efficiency_mode`: 是否使用高效率模型，默认`True`，使用高效率模型(mobile，16MB)，速度更快，精度稍低，该模型已经内置集成在`imgocr/models`文件夹下。如果需要更高精度，设置为False，使用高精度模型(server，160MB)，代码会自动下载到`imgocr/models`文件夹。
+> `is_efficiency_mode`: 是否使用高效率模型，默认`True`，使用高效率模型(mobile，20MB)，速度更快，精度稍低，该模型已经内置集成在`imgocr/models`文件夹下。如果需要更高精度，设置为False，使用高精度模型(server，160MB)，代码会自动下载到`imgocr/models`文件夹。
 
 output:
 ```shell
