@@ -40,12 +40,12 @@ The whole process is shown in the figure below:
 
 OCR detection/recognition benchmark:
 
-| Model                         | Detection mAP(%) | Recognition Acc(%) | GPU inference time(ms) | CPU inference time(ms) | Model storage size(M) | Download |
-|-------------------------------|-----------|-----------|----------------|------------------|------------|---------|
-| PP-OCRv4-mobile        | 77.79     | 78.20     | 2.71         | 79.11        | 14        | [mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv4-server	         | 82.69	    | 84.04	    | 24.92	       | 2742.31	     | 207       | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv5-mobile(default)	 | 79.0	     | 81.29	    | 6.36	        | 82.11	       | 20         | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv5-server         | 83.8	     | 86.38	    | 28.15	       | 2900.12	     | 160        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| Model                     | Detection mAP(%) | Recognition Acc(%) | GPU inference time(ms) | CPU inference time(ms) | Model storage size(M) | Download |
+|---------------------------|-----------|-----------|----------------|------------------|------------|---------|
+| PP-OCRv4-mobile           | 63.8      | 78.74     | 2.71         | 79.11        | 14         | [v4-mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv4-server	          | 69.2	     | 85.19	    | 24.92	       | 2742.31	     | 207        | [v4-server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv5-mobile(default)	 | 79.0	     | 81.29	    | 6.36	        | 82.11	       | 20         | [v5-mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv5-server	          | 83.8	     | 86.38	    | 28.15	       | 2900.12	     | 160        | [v5-server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
 
 > GPU inference time is based on NVIDIA Tesla T4 machine, precision type is FP32, CPU inference speed is based on Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz, precision type is FP32.
 

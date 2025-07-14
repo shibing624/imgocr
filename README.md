@@ -42,12 +42,12 @@ PP-OCRv4串联系统由文本检测模型和文本识别模型串联完成，首
 
 OCR 检测/识别 benchmark：
 
-| 模型                   | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(MB) | 下载地址 |
-|----------------------|-----------|-----------|--------------|--------------|------------|--------|
-| PP-OCRv4-mobile   | 63.8      | 78.74     | 2.71         | 79.11        | 14         | [mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv4-server	 | 69.2	     | 85.19	    | 24.92	       | 2742.31	     | 207        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv5-mobile(默认)	 | 79.0	     | 81.29	    | 6.36	        | 82.11	       | 20         | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
-| PP-OCRv5-server	 | 83.8	     | 86.38	    | 28.15	       | 2900.12	     | 160        | [server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| 模型                   | 检测 mAP(%) | 识别 Acc(%) | GPU 推理耗时(ms) | CPU 推理耗时(ms) | 模型存储大小(MB) | 下载地址                                                                   |
+|----------------------|-----------|-----------|--------------|--------------|------------|------------------------------------------------------------------------|
+| PP-OCRv4-mobile   | 63.8      | 78.74     | 2.71         | 79.11        | 14         | [v4-mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv4-server	 | 69.2	     | 85.19	    | 24.92	       | 2742.31	     | 207        | [v4-server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv5-mobile(默认)	 | 79.0	     | 81.29	    | 6.36	        | 82.11	       | 20         | [v5-mobile-model](https://modelscope.cn/models/lili666/imgocr/summary) |
+| PP-OCRv5-server	 | 83.8	     | 86.38	    | 28.15	       | 2900.12	     | 160        | [v5-server-model](https://modelscope.cn/models/lili666/imgocr/summary) |
 
 
 > GPU 推理耗时基于 NVIDIA Tesla T4 机器，精度类型为 FP32，CPU 推理速度基于 Intel(R) Xeon(R) Gold 5117 CPU @ 2.00GHz，精度类型为 FP32。
