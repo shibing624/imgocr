@@ -17,15 +17,23 @@ from .utils import infer_args, draw_ocr, http_get
 pwd_path = os.path.abspath(os.path.dirname(__file__))
 
 MODEL_URLS = {
-    "server": {
+    "server-v4": {
         "det": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_det_server_infer.onnx",
         "rec": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_rec_server_infer.onnx",
         "cls": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_cls_infer.onnx"
     },
-    "mobile": {
+    "mobile-v4": {
         "det": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_det_mobile_infer.onnx",
         "rec": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_rec_mobile_infer.onnx",
         "cls": "https://modelscope.cn/models/lili666/imgocr/resolve/master/ch_PP-OCRv4_cls_infer.onnx"
+    },
+    "server-v5": {
+        "det": "https://modelscope.cn/models/lili666/imgocr/resolve/master/PP-OCRv5_det_server_infer.onnx",
+        "rec": "https://modelscope.cn/models/lili666/imgocr/resolve/master/PP-OCRv5_rec_server_infer.onnx",
+    },
+    "mobile-v5": {
+        "det": "https://modelscope.cn/models/lili666/imgocr/resolve/master/PP-OCRv5_det_mobile_infer.onnx",
+        "rec": "https://modelscope.cn/models/lili666/imgocr/resolve/master/PP-OCRv5_rec_mobile_infer.onnx",
     },
 }
 
@@ -40,19 +48,40 @@ class ImgOcr(TextSystem):
         # 根据传入的参数覆盖更新默认参数
         params.__dict__.update(**kwargs)
 
-        # 选择模型，is_efficiency_mode=True 使用移动端模型，否则使用服务器端（大的）模型
-        if not params.is_efficiency_mode:
-            # 模型路径
-            local_det_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_det_server_infer.onnx')
-            if not os.path.exists(local_det_model_path):
-                http_get(MODEL_URLS["server"]['det'], local_det_model_path)
-            params.det_model_path = local_det_model_path
-            local_rec_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_rec_server_infer.onnx')
-            if not os.path.exists(local_rec_model_path):
-                http_get(MODEL_URLS["server"]['rec'], local_rec_model_path)
-            params.rec_model_path = local_rec_model_path
+        # 模型版本，paddleocr-v4或者v5，支持 'v4' 和 'v5',默认是 'v5'
+        # 选择模型，is_efficiency_mode=True 使用移动端模型，否则使用服务器端（大的）模型，默认是 True
+        if params.model_version == 'v4':
+            params.rec_char_dict_path = os.path.join(pwd_path, 'models/ppocr_keys_v1.txt')
+            if params.is_efficiency_mode:
+                params.det_model_url = MODEL_URLS["mobile-v4"]['det']
+                params.rec_model_url = MODEL_URLS["mobile-v4"]['rec']
+                params.det_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_det_mobile_infer.onnx')
+                params.rec_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_rec_mobile_infer.onnx')
+            else:
+                params.det_model_url = MODEL_URLS["server-v4"]['det']
+                params.rec_model_url = MODEL_URLS["server-v4"]['rec']
+                params.det_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_det_server_infer.onnx')
+                params.rec_model_path = os.path.join(pwd_path, 'models/ch_PP-OCRv4_rec_server_infer.onnx')
+        elif params.model_version == 'v5':
+            params.rec_char_dict_path = os.path.join(pwd_path, 'models/ppocrv5_dict.txt')
+            if params.is_efficiency_mode:
+                params.det_model_url = MODEL_URLS["mobile-v5"]['det']
+                params.rec_model_url = MODEL_URLS["mobile-v5"]['rec']
+                params.det_model_path = os.path.join(pwd_path, 'models/PP-OCRv5_det_mobile_infer.onnx')
+                params.rec_model_path = os.path.join(pwd_path, 'models/PP-OCRv5_rec_mobile_infer.onnx')
+            else:
+                params.det_model_url = MODEL_URLS["server-v5"]['det']
+                params.rec_model_url = MODEL_URLS["server-v5"]['rec']
+                params.det_model_path = os.path.join(pwd_path, 'models/PP-OCRv5_det_server_infer.onnx')
+                params.rec_model_path = os.path.join(pwd_path, 'models/PP-OCRv5_rec_server_infer.onnx')
+        else:
+            raise ValueError(f"Unsupported model version: {params.model_version}. Supported versions are 'v4' and 'v5'.")
 
-        # 初始化模型
+        if not os.path.exists(params.det_model_path):
+            http_get(params.det_model_url, params.det_model_path)
+        if not os.path.exists(params.rec_model_path):
+            http_get(params.rec_model_url, params.rec_model_path)
+
         super().__init__(params)
 
     def ocr(self, img: Union[str, Image.Image, MatLike, Path, bytes], det=True, rec=True, cls=True) -> List:

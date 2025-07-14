@@ -282,6 +282,8 @@ def infer_args():
     parser.add_argument("--use_gpu", type=str2bool, default=False)
     parser.add_argument("--is_efficiency_mode", type=str2bool, default=True,
                         help="Whether to use efficiency mode, True 使用高效率模型（mobile），False 使用高精度模型(server)")
+    parser.add_argument('--model_version', type=str, default='v5',
+                        help='paddleOCR model version, options: v5, v4')
 
     # params for text detector
     parser.add_argument("--det_algorithm", type=str, default="DB")
@@ -308,7 +310,7 @@ def infer_args():
     parser.add_argument("--max_text_length", type=int, default=25)
     parser.add_argument("--use_space_char", type=str2bool, default=True)
     parser.add_argument("--rec_char_dict_path", type=str,
-                        default=str(module_dir / "models/ppocr_keys_v1.txt"))
+                        default=str(module_dir / "models/ppocr_keys_v11.txt"))
     parser.add_argument("--drop_score", type=float, default=0.5)
 
     # params for text classifier

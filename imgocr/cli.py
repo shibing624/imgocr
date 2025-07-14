@@ -19,9 +19,9 @@ from imgocr.ppocr_onnx import ImgOcr
 def save_partial_results(df, output_file, is_first_chunk):
     mode = 'w' if is_first_chunk else 'a'
     header = is_first_chunk
-    dir = os.path.dirname(output_file)
-    if not os.path.exists(dir):
-        os.makedirs(dir)
+    file_dir = os.path.dirname(output_file)
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
 
     with open(output_file, mode, encoding='utf-8') as f:
         df.to_csv(f, index=False, header=header)
@@ -39,7 +39,7 @@ def parse_args():
 
 
 def cli(args):
-    m = ImgOcr(use_gpu=args.use_gpu)
+    m = ImgOcr(use_gpu=args.use_gpu, model_version='v5', is_efficiency_mode=True)
     images = glob(args.image_dir + '/*.[jJpP][pPnN][gG]')
     logger.info(f"Found {len(images)} images in {args.image_dir}")
     chunk_size = args.chunk_size
