@@ -26,11 +26,14 @@
 ## Showcase
 
 
-| 银行存根 | ![银行存根](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg) |
-|----------|----------------------------------------------------------------------------------------------|
-| 表格     | ![表格](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg)     |
-| 火车票   | ![火车票](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg)   |
-| 英文论文 | ![英文论文](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png) |
+| 银行存根 | ![银行存根](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00111002.jpg)     |
+|------|-----------------------------------------------------------------------------------------------|
+| 表格   | ![表格](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00015504.jpg)       |
+| 火车票  | ![火车票](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/00056221.jpg)      |
+| 英文论文 | ![英文论文](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/eng_paper.png)    |
+| 手写中文 | ![手写中文](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/handwrite_zh.jpg) |
+| 手写英文 | ![手写中文](https://github.com/shibing624/imgocr/blob/main/examples/ocr_results/handwrite_en.jpg) |
+
 
 ## Benchmark
 

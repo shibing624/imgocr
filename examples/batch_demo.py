@@ -3,15 +3,30 @@
 @author:XuMing(xuming624@qq.com)
 @description: 
 """
-from imgocr.cli import cli
-import argparse
+from imgocr import ImgOcr, draw_ocr_boxes
+import os
+from glob import glob
+from tqdm import tqdm
+import pandas as pd
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='imgocr cli')
-    parser.add_argument('--image_dir', type=str, help='input image dir path, required', default='data')
-    parser.add_argument('--output_dir', type=str, default='ocr_results', help='output ocr result dir path, default outputs')
-    parser.add_argument('--chunk_size', type=int, default=50, help='chunk size, default 10')
-    parser.add_argument('--use_gpu', type=bool, default=False, help='use gpu, default False')
-    args = parser.parse_args()
-    print(args)
-    cli(args)
+    m = ImgOcr(use_gpu=False, is_efficiency_mode=False)
+    image_dir = 'data'
+    saved_dir = 'ocr_results'
+    if not os.path.exists(saved_dir):
+        os.makedirs(saved_dir)
+    images = glob(image_dir + '/*.[jJpP][pPnN][gG]')
+    print(f"Found {len(images)} images in {image_dir}")
+    ocr_results = []
+    for path in tqdm(images):
+        res = m.ocr(path)
+        res_list = [i['text'] for i in res if i]
+        result = "\n".join(res_list)
+        ocr_results.append(result)
+        # Save ocr box img
+        saved_img_path = os.path.join(saved_dir, os.path.basename(path))
+        draw_ocr_boxes(path, res, saved_img_path)
+    df = pd.DataFrame({'images': images, 'ocr_results': ocr_results})
+    output_file = os.path.join(saved_dir, 'ocr_results.csv')
+    df.to_csv(output_file, index=False)
+    print(f"OCR results saved to {output_file}")

@@ -10,7 +10,7 @@ sys.path.append('..')
 from imgocr import ImgOcr
 
 if __name__ == "__main__":
-    m = ImgOcr(use_gpu=False, model_version='v5')
+    m = ImgOcr(use_gpu=False, model_version='v5', is_efficiency_mode=True)
     img_path = "data/hard1.jpg"
     s = time.time()
     result = m.ocr(img_path)

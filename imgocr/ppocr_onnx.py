@@ -75,7 +75,8 @@ class ImgOcr(TextSystem):
                 params.det_model_path = os.path.join(pwd_path, 'models/PP-OCRv5_det_server_infer.onnx')
                 params.rec_model_path = os.path.join(pwd_path, 'models/PP-OCRv5_rec_server_infer.onnx')
         else:
-            raise ValueError(f"Unsupported model version: {params.model_version}. Supported versions are 'v4' and 'v5'.")
+            raise ValueError(
+                f"Unsupported model version: {params.model_version}. Supported versions are 'v4' and 'v5'.")
 
         if not os.path.exists(params.det_model_path):
             http_get(params.det_model_url, params.det_model_path)

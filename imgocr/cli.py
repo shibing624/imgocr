@@ -13,7 +13,7 @@ from tqdm import tqdm
 import os
 
 sys.path.append('..')
-from imgocr.ppocr_onnx import ImgOcr
+from imgocr.ppocr_onnx import ImgOcr, draw_ocr_boxes
 
 
 def save_partial_results(df, output_file, is_first_chunk):
@@ -31,15 +31,19 @@ def parse_args():
     parser = argparse.ArgumentParser(description='imgocr cli')
     parser.add_argument('--image_dir', type=str, help='input image dir path, required', required=True)
     parser.add_argument('--output_dir', type=str, default='outputs', help='output ocr result dir path, default outputs')
-    parser.add_argument('--chunk_size', type=int, default=50, help='chunk size, default 10')
-    parser.add_argument('--use_gpu', type=bool, default=False, help='use gpu, default False')
+    parser.add_argument("--save_box_img", action='store_true', help='save ocr box img, default False')
+    parser.add_argument("--no_efficiency_mode", action='store_true', help='disable efficiency mode, default False')
+    parser.add_argument('--chunk_size', type=int, default=50, help='chunk size')
+    parser.add_argument('--use_gpu', action='store_true', help='use gpu, default False')
     args = parser.parse_args()
     logger.debug(args)
     return args
 
 
 def cli(args):
-    m = ImgOcr(use_gpu=args.use_gpu, model_version='v5', is_efficiency_mode=True)
+    m = ImgOcr(use_gpu=args.use_gpu, is_efficiency_mode=not args.no_efficiency_mode)
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
     images = glob(args.image_dir + '/*.[jJpP][pPnN][gG]')
     logger.info(f"Found {len(images)} images in {args.image_dir}")
     chunk_size = args.chunk_size
@@ -52,6 +56,10 @@ def cli(args):
                 res_list = [i['text'] for i in res if i]
                 result = "\n".join(res_list)
                 ocr_results.append(result)
+                if args.save_box_img:
+                    # Save ocr box img
+                    saved_img_path = os.path.join(args.output_dir, os.path.basename(path))
+                    draw_ocr_boxes(path, res, saved_img_path)
             except Exception as e:
                 logger.error(f'error: {e}, img: {path}')
                 ocr_results.append("")
