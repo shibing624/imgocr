@@ -104,7 +104,7 @@ for i in result:
     print(i['text'])
 ```
 
-> `is_efficiency_mode`: 是否使用高效率模型，默认`True`，使用高效率模型(mobile，20MB)，速度更快，精度稍低，该模型已经内置集成在`imgocr/models`文件夹下。如果需要更高精度，设置为False，使用高精度模型(server，160MB)，代码会自动下载到`imgocr/models`文件夹。
+> `is_efficiency_mode`: 是否使用高效率模型，默认`True`，使用高效率模型(v5-mobile，20MB)，速度更快，精度稍低，该模型已经内置集成在`imgocr/models`文件夹下。如果需要更高精度，设置为False，使用高精度模型(v5-server，160MB)，代码会自动下载到`imgocr/models`文件夹。
 
 output:
 ```shell
